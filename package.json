@@ -11,7 +11,7 @@
     "Other"
   ],
   "activationEvents": [
-    "*"
+    "onStartupFinished"
   ],
   "main": "./src/extension.js",
   "contributes": {
@@ -42,7 +42,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/codeseek.git"
+    "url": "https://github.com/sh20raj/codeseek.git"
   },
   "publisher": "your-publisher-name",
   "icon": "images/icon.png",
@@ -51,7 +51,7 @@
     "theme": "dark"
   },
   "bugs": {
-    "url": "https://github.com/your-username/codeseek/issues"
+    "url": "https://github.com/sh20raj/codeseek/issues"
   },
-  "homepage": "https://github.com/your-username/codeseek#readme"
+  "homepage": "https://github.com/sh20raj/codeseek#readme"
 } 
