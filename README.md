@@ -10,7 +10,7 @@
 
 AI-powered coding assistant with DeepSeek integration for VS Code, featuring intelligent code completion, chat assistance, and documentation generation.
 
-![CodeSeek](https://socialify.git.ci/SH20RAJ/CodeSeek/image?description=1&language=1&name=1&owner=1&stargazers=1&theme=Auto)
+![CodeSeek](https://i.imgur.com/qRAHNoR.png)
 
 ## Features ✨
 

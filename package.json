@@ -2,7 +2,7 @@
   "name": "codeseek-shade",
   "displayName": "CodeSeek - DeepSeek AI Coding Assistant",
   "description": "AI-powered coding assistant with DeepSeek integration",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "engines": {
     "vscode": "^1.80.0"
   },
