@@ -1,8 +1,8 @@
 {
-  "name": "codeseek",
-  "displayName": "CodeSeek",
+  "name": "codeseek-shade",
+  "displayName": "CodeSeek - DeepSeek AI Coding Assistant",
   "description": "AI-powered coding assistant with DeepSeek integration",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -44,7 +44,7 @@
     "type": "git",
     "url": "https://github.com/sh20raj/codeseek.git"
   },
-  "publisher": "your-publisher-name",
+  "publisher": "sh20raj",
   "icon": "images/icon.png",
   "galleryBanner": {
     "color": "#C80000",
