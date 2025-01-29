@@ -1,0 +1,57 @@
+{
+  "name": "codeseek",
+  "displayName": "CodeSeek",
+  "description": "AI-powered coding assistant with DeepSeek integration",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "CodeSeek",
+      "properties": {
+        "codeseek.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "DeepSeek API Key"
+        },
+        "codeseek.maxTokens": {
+          "type": "number",
+          "default": 100,
+          "description": "Maximum number of tokens for completion"
+        },
+        "codeseek.temperature": {
+          "type": "number",
+          "default": 0.7,
+          "description": "Temperature for AI completions"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "openai": "^4.28.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/codeseek.git"
+  },
+  "publisher": "your-publisher-name",
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#C80000",
+    "theme": "dark"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/codeseek/issues"
+  },
+  "homepage": "https://github.com/your-username/codeseek#readme"
+} 

@@ -1,12 +1,10 @@
 # CodeSeek 🚀
 
-[![VS Code Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/your-name.codeseek?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=your-name.codeseek)
-[![Downloads](https://img.shields.io/visual-studio-marketplace/d/your-name.codeseek?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=your-name.codeseek)
+[![VS Code Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/your-publisher-name.codeseek?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=your-publisher-name.codeseek)
+[![Downloads](https://img.shields.io/visual-studio-marketplace/d/your-publisher-name.codeseek?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=your-publisher-name.codeseek)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/your-name/codeseek/ci.yml?style=flat-square)](https://github.com/your-name/codeseek/actions)
 
 AI-powered coding assistant with DeepSeek integration for VS Code, featuring intelligent code completion, chat assistance, and documentation generation.
-
-![CodeSeek Demo](docs/demo.gif) <!-- Add actual screenshot later -->
 
 ## Features ✨
 
