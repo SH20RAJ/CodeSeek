@@ -57,6 +57,12 @@ Just start typing - CodeSeek will automatically suggest completions.
 2. Run command **CodeSeek: Generate README**
 3. Review and save generated documentation
 
+
+
+https://github.com/user-attachments/assets/1d10c481-9d5a-4c91-bf52-4db401c00783
+
+
+
 ## Troubleshooting 🔧
 
 Common issues:
