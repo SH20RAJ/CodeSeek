@@ -1,6 +1,5 @@
 // Test file for CodeSeek autocompletion
-function calculateSum(a, b) {
-    // Start typing here and wait for suggestions
+function calculateSum(a, b) {   
     return a + b;
 }
 

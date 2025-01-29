@@ -38,10 +38,14 @@ class DeepSeekProvider {
             const codeContext = document.getText(contextRange);
 
             const completion = await this.openai.completions.create({
-                model: 'deepseek-r1',
-                prompt: codeContext,
-                max_tokens: vscode.workspace.getConfiguration('codeseek').get('maxTokens'),
-                temperature: vscode.workspace.getConfiguration('codeseek').get('temperature'),
+              model: "deepseek-chat",
+              prompt: codeContext,
+              max_tokens: vscode.workspace
+                .getConfiguration("codeseek")
+                .get("maxTokens"),
+              temperature: vscode.workspace
+                .getConfiguration("codeseek")
+                .get("temperature"),
             });
 
             if (completion.choices && completion.choices.length > 0) {
