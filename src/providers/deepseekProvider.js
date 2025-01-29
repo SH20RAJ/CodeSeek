@@ -1,88 +1,93 @@
-const vscode = require('vscode');
-const { OpenAI } = require('openai');
+const vscode = require("vscode");
+const { OpenAI } = require("openai");
 
 class DeepSeekProvider {
-    constructor(context) {
-        this.context = context;
-        this.openai = null;
-        this.setupClient();
+  constructor(context) {
+    this.context = context;
+    this.openai = null;
+    this.setupClient();
+  }
+
+  async setupClient() {
+    const config = vscode.workspace.getConfiguration("codeseek");
+    const apiKey = config.get("apiKey");
+
+    if (!apiKey) {
+      vscode.window.showErrorMessage("Configure DeepSeek API key in settings");
+      return;
     }
 
-    async setupClient() {
-        const config = vscode.workspace.getConfiguration('codeseek');
-        const apiKey = config.get('apiKey');
-        
-        if (!apiKey) {
-            vscode.window.showErrorMessage('Please configure your DeepSeek API key');
-            return;
-        }
+    this.openai = new OpenAI({
+      baseURL: "https://api.deepseek.com/v1", // Removed /v1
+      apiKey: apiKey,
+    });
+  }
 
-        this.openai = new OpenAI({
-            baseURL: 'https://api.deepseek.com/v1',
-            apiKey: apiKey
-        });
-    }
+  async provideInlineCompletionItems(document, position) {
+    if (!this.openai) return [];
 
-    async provideInlineCompletionItems(document, position, context, token) {
-        if (!this.openai) {
-            return [];
-        }
+    try {
+      const linePrefix = document
+        .lineAt(position)
+        .text.substring(0, position.character);
+      const contextRange = new vscode.Range(
+        Math.max(0, position.line - 2),
+        0,
+        position.line,
+        position.character
+      );
+      const codeContext = document.getText(contextRange);
 
-        try {
-            // Get the current line text up to the cursor
-            const linePrefix = document.lineAt(position).text.substring(0, position.character);
-            
-            // Get a few lines before for context
-            const startLine = Math.max(0, position.line - 5);
-            const contextRange = new vscode.Range(startLine, 0, position.line, position.character);
-            const codeContext = document.getText(contextRange);
+      const completion = await this.openai.chat.completions.create({
+        model: "deepseek-chat",
+        messages: [
+          {
+            role: "system",
+            content:
+              "Respond ONLY with code completion for the provided context. No explanations. No markdown. No natural language.",
+          },
+          {
+            role: "user",
+            content: `Complete this code. Current cursor position shown by |. Only respond with the code to insert.\n\n${codeContext}|`,
+          },
+        ],
+        max_tokens: 30,
+        temperature: 0.2,
+        top_p: 0.3,
+        stop: ["\n", "//", "/*", "<|endoftext|>"],
+      });
 
-            const completion = await this.openai.completions.create({
-              model: "deepseek-chat",
-              prompt: codeContext,
-              max_tokens: vscode.workspace
-                .getConfiguration("codeseek")
-                .get("maxTokens"),
-              temperature: vscode.workspace
-                .getConfiguration("codeseek")
-                .get("temperature"),
-            });
+      if (!completion?.choices?.[0]?.message?.content) return [];
 
-            if (completion.choices && completion.choices.length > 0) {
-                const suggestion = completion.choices[0].text;
-                return [
-                    {
-                        text: suggestion,
-                        range: new vscode.Range(position, position)
-                    }
-                ];
-            }
-        } catch (error) {
-            this.handleError(error);
-        }
+      let suggestion = completion.choices[0].message.content
+        .replace(/```.*/gs, "") // Remove code blocks
+        .split("\n")[0] // Take first line only
+        .trim();
 
+      // Filter non-code responses
+      if (suggestion.match(/^(please|sorry|can i|would you)/i)) {
         return [];
-    }
+      }
 
-    handleError(error) {
-        if (error.response) {
-            switch (error.response.status) {
-                case 401:
-                    vscode.window.showErrorMessage('Invalid DeepSeek API key');
-                    break;
-                case 429:
-                    vscode.window.showErrorMessage('API rate limit exceeded');
-                    break;
-                case 500:
-                    vscode.window.showErrorMessage('DeepSeek server error');
-                    break;
-                default:
-                    vscode.window.showErrorMessage(`DeepSeek API error: ${error.message}`);
-            }
-        } else {
-            vscode.window.showErrorMessage(`Network error: ${error.message}`);
-        }
+      return [
+        new vscode.InlineCompletionItem(
+          suggestion,
+          new vscode.Range(position, position)
+        ),
+      ];
+    } catch (error) {
+      console.error("Completion Error:", error);
+      return [];
     }
+  }
+
+  handleError(error) {
+    let message = error.message;
+    if (error.statusCode) {
+      message = `API Error [${error.statusCode}]: ${message}`;
+    }
+    vscode.window.showErrorMessage(message);
+  }
 }
 
-module.exports = DeepSeekProvider; 
+module.exports = DeepSeekProvider;
