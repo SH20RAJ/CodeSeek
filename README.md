@@ -123,13 +123,7 @@ View on GitHub: [https://github.com/SH20RAJ/CodeSeek](https://github.com/SH20RAJ
 
 ---
 
-<div align="center">
-  <a href="https://www.producthunt.com/posts/codeseek-deepseek-ai-coding-assistant?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-codeseek&#0045;deepseek&#0045;ai&#0045;coding&#0045;assistant" target="_blank">
-    <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=833425&theme=light&t=1738637534487"
-         alt="CodeSeek - DeepSeek AI Coding Assistant - AI-powered coding assistant with DeepSeek for VS Code | Product Hunt"
-         style="width: 250px; height: 54px;" width="250" height="54" />
-  </a>
-</div>
+Check us out on [Product Hunt](https://www.producthunt.com/posts/codeseek-deepseek-ai-coding-assistant)!
 
 ---
 
