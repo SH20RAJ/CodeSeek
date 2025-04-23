@@ -310,7 +310,7 @@ class ChatView {
                 // Handle messages from the extension
                 window.addEventListener('message', event => {
                     const message = event.data;
-                    
+
                     switch (message.command) {
                         case 'addMessage':
                             addMessageToChat(message.role, message.content);
@@ -325,26 +325,26 @@ class ChatView {
                 function addMessageToChat(role, content) {
                     const messageDiv = document.createElement('div');
                     messageDiv.className = \`message \${role}\`;
-                    
+
                     const headerDiv = document.createElement('div');
                     headerDiv.className = 'message-header';
-                    headerDiv.textContent = role === 'user' ? 'You' : 
+                    headerDiv.textContent = role === 'user' ? 'You' :
                                            role === 'assistant' ? 'CodeSeek' : 'System';
-                    
+
                     const contentDiv = document.createElement('div');
                     contentDiv.className = 'message-content';
-                    
+
                     // Process markdown-like content
                     let processedContent = content
-                        .replace(/\\`\\`\\`([\\s\\S]*?)\\`\\`\\`/g, '<pre><code>$1</code></pre>')
-                        .replace(/\\`([^\\`]+)\\`/g, '<code>$1</code>')
-                        .replace(/\\n/g, '<br>');
-                    
+                        .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+                        .replace(/`([^`]+)`/g, '<code>$1</code>')
+                        .replace(/\n/g, '<br>');
+
                     contentDiv.innerHTML = processedContent;
-                    
+
                     messageDiv.appendChild(headerDiv);
                     messageDiv.appendChild(contentDiv);
-                    
+
                     chatContainer.appendChild(messageDiv);
                     chatContainer.scrollTop = chatContainer.scrollHeight;
                 }
