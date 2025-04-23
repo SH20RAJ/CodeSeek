@@ -1,5 +1,5 @@
 const vscode = require("vscode");
-const { OpenAI } = require("openai");
+const ApiUtils = require("../utils/apiUtils");
 
 class DeepSeekProvider {
   constructor(context) {
@@ -9,18 +9,7 @@ class DeepSeekProvider {
   }
 
   async setupClient() {
-    const config = vscode.workspace.getConfiguration("codeseek");
-    const apiKey = config.get("apiKey");
-
-    if (!apiKey) {
-      vscode.window.showErrorMessage("Configure DeepSeek API key in settings");
-      return;
-    }
-
-    this.openai = new OpenAI({
-      baseURL: "https://api.deepseek.com/v1", // Removed /v1
-      apiKey: apiKey,
-    });
+    this.openai = ApiUtils.createClient();
   }
 
   async provideInlineCompletionItems(document, position) {
@@ -86,11 +75,11 @@ C. **Pattern Completion**:
 
 5. **Special Cases**:
 - Partial mid-line completion:
-  Input: 'const count = items.filter(i ⇒ i.' 
+  Input: 'const count = items.filter(i ⇒ i.'
   Output: 'active).length;'
 
 - Argument list prediction:
-  Input: 'new Date(' 
+  Input: 'new Date('
   Output: 'year, month, day)'
 
 - Smart placeholders:
@@ -163,17 +152,13 @@ C. **Pattern Completion**:
         ),
       ];
     } catch (error) {
-      console.error("Completion Error:", error);
+      ApiUtils.handleError(error);
       return [];
     }
   }
 
   handleError(error) {
-    let message = error.message;
-    if (error.statusCode) {
-      message = `API Error [${error.statusCode}]: ${message}`;
-    }
-    vscode.window.showErrorMessage(message);
+    ApiUtils.handleError(error);
   }
 }
 

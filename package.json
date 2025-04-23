@@ -2,7 +2,7 @@
   "name": "codeseek-shade",
   "displayName": "CodeSeek - DeepSeek AI Coding Assistant",
   "description": "AI-powered coding assistant with DeepSeek integration",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -34,6 +34,32 @@
           "description": "Temperature for AI completions"
         }
       }
+    },
+    "commands": [
+      {
+        "command": "codeseek.openChat",
+        "title": "CodeSeek: Open Chat",
+        "category": "CodeSeek"
+      },
+      {
+        "command": "codeseek.suggestNames",
+        "title": "CodeSeek: Suggest Names",
+        "category": "CodeSeek"
+      },
+      {
+        "command": "codeseek.generateReadme",
+        "title": "CodeSeek: Generate README",
+        "category": "CodeSeek"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorHasSelection",
+          "command": "codeseek.suggestNames",
+          "group": "codeseek"
+        }
+      ]
     }
   },
   "dependencies": {
@@ -54,4 +80,4 @@
     "url": "https://github.com/sh20raj/codeseek/issues"
   },
   "homepage": "https://github.com/sh20raj/codeseek#readme"
-} 
+}

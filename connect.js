@@ -1,17 +1,36 @@
 const { OpenAI } = require("openai");
 
-const openai = new OpenAI({
-  baseURL: "https://api.deepseek.com/v1/",
-  apiKey: "sk-68664ab00493458793483e10b250d7b8",
-});
+/**
+ * This is a test file for DeepSeek API connection.
+ * To use this file:
+ * 1. Add your API key below
+ * 2. Run with Node.js: node connect.js
+ */
 
 async function main() {
-  const completion = await openai.chat.completions.create({
-    messages: [{ role: "system", content: "You are a helpful assistant." }],
-    model: "deepseek-chat",
+  // Add your API key here
+  const apiKey = "YOUR_API_KEY_HERE";
+
+  if (apiKey === "YOUR_API_KEY_HERE") {
+    console.error("Please add your DeepSeek API key to this file before running.");
+    return;
+  }
+
+  const openai = new OpenAI({
+    baseURL: "https://api.deepseek.com/v1/",
+    apiKey: apiKey,
   });
 
-  console.log(completion.choices[0].message.content);
+  try {
+    const completion = await openai.chat.completions.create({
+      messages: [{ role: "system", content: "You are a helpful assistant." }],
+      model: "deepseek-chat",
+    });
+
+    console.log("API Response:", completion.choices[0].message.content);
+  } catch (error) {
+    console.error("API Error:", error.message);
+  }
 }
 
 main();

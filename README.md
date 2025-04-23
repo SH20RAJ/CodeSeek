@@ -8,16 +8,18 @@
 [![GitHub issues](https://img.shields.io/github/issues/SH20RAJ/CodeSeek?style=flat-square)](https://github.com/SH20RAJ/CodeSeek/issues)
 [![GitHub license](https://img.shields.io/github/license/SH20RAJ/CodeSeek?style=flat-square)](https://github.com/SH20RAJ/CodeSeek/blob/main/LICENSE)
 
-AI-powered coding assistant with DeepSeek integration for VS Code, featuring intelligent code completion, chat assistance, and documentation generation.
+CodeSeek is a powerful AI-powered coding assistant for VS Code that leverages DeepSeek's advanced AI models to enhance your coding experience. With intelligent code completion, interactive chat assistance, and automatic documentation generation, CodeSeek helps you write better code faster.
 
 ![CodeSeek](https://i.imgur.com/qRAHNoR.png)
 
 ## Features ✨
 
-- 🧠 Context-aware code completions
-- 📚 README.md generation
-- ⚡ Real-time AI assistance
-- 🔒 Secure API key management
+- 🧠 **Intelligent Code Completions**: Context-aware suggestions that understand your code structure and style
+- 💬 **AI Chat Assistant**: Get coding help, explanations, and examples through an interactive chat interface
+- 🏷️ **Smart Name Suggestions**: Generate meaningful variable, function, and class names for selected code
+- 📚 **README Generation**: Automatically create comprehensive documentation for your projects
+- ⚡ **Real-time AI Assistance**: Get help when you need it without leaving your editor
+- 🔒 **Secure API Key Management**: Your DeepSeek API key is stored securely in VS Code settings
 
 ## Installation 📦
 
@@ -33,47 +35,81 @@ AI-powered coding assistant with DeepSeek integration for VS Code, featuring int
 2. Open VS Code Settings (`Ctrl+,` or `Cmd+,`)
 3. Search for "CodeSeek"
 4. Enter your API key:
-  ```json
-  "codeseek.apiKey": "your-api-key-here"
-  ```
+
+```json
+"codeseek.apiKey": "your-api-key-here"
+```
 
 ## Usage 🛠️
 
 ### Code Completion
-Just start typing - CodeSeek will automatically suggest completions.
+
+CodeSeek provides intelligent code completions as you type:
+
+1. Start typing code in any file
+2. CodeSeek will automatically suggest relevant completions based on context
+3. Press Tab or Enter to accept a suggestion
 
 ### Chat Interface
+
+Get help from the AI assistant through the chat panel:
+
 1. Open Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`)
 2. Select **CodeSeek: Open Chat**
-3. Type your question/request
+3. Type your coding questions or requests
+4. The AI will respond with explanations, examples, and solutions
 
 ### Name Suggestions
-1. Select code
-2. Right-click and choose **CodeSeek: Suggest Names**
-3. Choose from AI-generated options
+
+Generate meaningful names for your code:
+
+1. Select a block of code (function, variable declaration, etc.)
+2. Right-click and choose **CodeSeek: Suggest Names** from the context menu
+3. Choose from the AI-generated naming options
+4. The selected name will replace your code selection
 
 ### Generate README
-1. Open a project folder
-2. Run command **CodeSeek: Generate README**
-3. Review and save generated documentation
 
+Automatically create documentation for your project:
 
+1. Open a project folder in VS Code
+2. Open Command Palette and select **CodeSeek: Generate README**
+3. CodeSeek will analyze your project and generate a comprehensive README.md
+4. Review and save the generated documentation
 
-https://github.com/user-attachments/assets/1d10c481-9d5a-4c91-bf52-4db401c00783
+![CodeSeek Features](https://i.imgur.com/qRAHNoR.png)
 
+## Advanced Configuration ⚙️
 
+CodeSeek offers additional configuration options to customize your experience:
+
+```json
+{
+  "codeseek.apiKey": "your-api-key-here",
+  "codeseek.maxTokens": 100,  // Adjust for longer/shorter completions
+  "codeseek.temperature": 0.7  // Lower for more deterministic responses, higher for more creative
+}
+```
 
 ## Troubleshooting 🔧
 
-Common issues:
+Common issues and solutions:
+
 - **No suggestions appearing?**
-  - Verify API key is valid
-  - Check internet connection
-  - Ensure file type is supported
+  - Verify your DeepSeek API key is valid and correctly entered in settings
+  - Check your internet connection
+  - Ensure the file type is supported
+  - Restart VS Code after changing settings
 
 - **Slow responses?**
-  - Reduce maximum token count in settings
-  - Check DeepSeek API status
+  - Reduce the maximum token count in settings
+  - Check the DeepSeek API status
+  - Consider using a more stable internet connection
+
+- **Chat not working?**
+  - Ensure your API key has sufficient credits
+  - Try reloading the window (`Developer: Reload Window` in command palette)
+  - Check the Output panel for any error messages
 
 ## Contributing 🤝
 
@@ -89,14 +125,12 @@ View on GitHub: [https://github.com/SH20RAJ/CodeSeek](https://github.com/SH20RAJ
 
 <div align="center">
   <a href="https://www.producthunt.com/posts/codeseek-deepseek-ai-coding-assistant?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-codeseek&#0045;deepseek&#0045;ai&#0045;coding&#0045;assistant" target="_blank">
-    <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=833425&theme=light&t=1738637534487" 
-         alt="CodeSeek - DeepSeek AI Coding Assistant - AI-powered coding assistant with DeepSeek for VS Code | Product Hunt" 
+    <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=833425&theme=light&t=1738637534487"
+         alt="CodeSeek - DeepSeek AI Coding Assistant - AI-powered coding assistant with DeepSeek for VS Code | Product Hunt"
          style="width: 250px; height: 54px;" width="250" height="54" />
   </a>
 </div>
 
-
 ---
 
 **Disclaimer**: This extension requires a valid DeepSeek API key. Usage may be subject to DeepSeek's terms of service.
-
